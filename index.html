@@ -58,6 +58,7 @@ section{display:flex; flex-direction:column}
   .btn:hover{background:var(--blue-hover); border-color:var(--blue-hover)}
   .btn.ghost:hover{background:rgba(233,238,244,.08); border-color:rgba(233,238,244,.7)}
   .choice:hover{background:rgba(233,238,244,.12); border-color:rgba(233,238,244,.75)}
+  button.ticket:not(:disabled):hover{transform:translateY(-2px); filter:brightness(.97)}
 }
 .btn.small{min-height:44px; padding:8px 16px; font-size:15px}
 .btn[aria-expanded="true"]{background:var(--blue-hover); border-color:var(--blue-hover)}
@@ -176,8 +177,14 @@ section{display:flex; flex-direction:column}
 .ticket{--n:58px; position:relative; display:grid; grid-template-columns:1fr var(--n); min-height:128px; background:var(--screen); color:var(--ink); border-radius:8px;
   -webkit-mask:radial-gradient(circle 9px at calc(100% - var(--n)) 0, #0000 97%, #000) top / 100% 51% no-repeat, radial-gradient(circle 9px at calc(100% - var(--n)) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
   mask:radial-gradient(circle 9px at calc(100% - var(--n)) 0, #0000 97%, #000) top / 100% 51% no-repeat, radial-gradient(circle 9px at calc(100% - var(--n)) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat}
+.question{margin:0 2px 12px; font:800 clamp(30px,8.4vw,40px)/1 var(--display); color:var(--hall-ink); text-wrap:balance}
+button.ticket{appearance:none; -webkit-appearance:none; width:100%; border:0; padding:0; margin:0; text-align:left; font:inherit; cursor:pointer; transition:transform .12s, filter .15s, opacity .2s}
+button.ticket:active{transform:translateY(1px)}
+button.ticket:focus-visible{outline:none; box-shadow:inset 0 0 0 3px var(--blue-light)}
+button.ticket:disabled{cursor:default; transform:none}
+.ticket.dim{opacity:.72}
 .ticket .main{display:flex; flex-direction:column; padding:15px 14px 14px 18px; min-width:0}
-.ticket .label{font-size:15px; line-height:1.35; font-weight:500}
+.ticket .label{display:block; font-size:15px; line-height:1.35; font-weight:500}
 .ticket .value{margin-top:auto; padding-top:10px; display:flex; flex-wrap:wrap; align-items:baseline; column-gap:8px}
 .ticket .value b{font:800 58px/.86 var(--display); letter-spacing:.005em; white-space:nowrap}
 .ticket .value span{font-size:15px; color:var(--muted)}
@@ -339,7 +346,7 @@ section{display:flex; flex-direction:column}
 <script type="application/json" id="quiz-data">{
  "brand": "ПОРА играть",
  "title": "Арктика в кадре и за кадром",
- "lead": "Угадайте, когда снят фильм об Арктике, и сравните цифры проката. За верные ответы ваш фильм собирает зрителей.",
+ "lead": "Угадайте, когда снят фильм об Арктике, и сравните цифры проката. Чем больше вы дадите верных ответов, тем больше зрителей соберет ваш фильм!",
  "meta": "13 вопросов, около трех минут",
  "articleTitle": "Арктика в кадре и за кадром",
  "articleUrl": "https://goarctic.ru/kultura/arktika-v-kadre-i-za-kadrom/",
@@ -362,9 +369,9 @@ section{display:flex; flex-direction:column}
    "id": "out",
    "kicker": "Часть вторая",
    "title": "За кадром",
-   "text": "Цифра на втором билете больше или меньше?",
+   "text": "На каком из двух билетов цифра больше?",
    "hintTouch": "",
-   "hintMouse": "Можно нажимать ↑ и ↓.",
+   "hintMouse": "Нажмите на билет или выберите его стрелками ↑ и ↓.",
    "button": "Смотреть"
   }
  ],
@@ -386,7 +393,7 @@ section{display:flex; flex-direction:column}
    "plot": "Горожане спасаются от вируса на озере в Карелии",
    "title": "«Эпидемия»",
    "meta": "Сериал, 2019",
-   "note": "Север как убежище или место изоляции показывают 7 проектов из 24.",
+   "note": "Север фигурирует в качестве убежища или места изоляции в 7 современных проектах из 24.",
    "photo": {
     "src": "photos/01_vongozero.jpg",
     "caption": "Озеро Вонгозеро, Карелия",
@@ -437,7 +444,7 @@ section{display:flex; flex-direction:column}
    "plot": "Саамская женщина приютила двух солдат враждующих армий",
    "title": "«Кукушка»",
    "meta": "Фильм, 2002",
-   "note": "Одна из трех лент о коренных народах Севера, вместе с «Белым ягелем» и «Китобоем».",
+   "note": "Одна из трех российских кинолент о коренных народах Севера (наряду с «Белым ягелем» и «Китобоем»).",
    "photo": {
     "src": "photos/04_lapland.jpg",
     "caption": "Финская Лапландия",
@@ -454,7 +461,7 @@ section{display:flex; flex-direction:column}
    "plot": "Спасательная операция во льдах",
    "title": "«Красная палатка»",
    "meta": "Фильм, 1969",
-   "note": "Сюжеты о выживании и спасении во льдах остались и позже: «Челюскинцы» (1984), «Точка возврата» (1986).",
+   "note": "Фильмы о выживании и спасении во льдах снимались и позже, например, «Челюскинцы» (1984) и «Точка возврата» (1986).",
    "photo": {
     "src": "photos/05_airship_italia_1928.jpg",
     "caption": "Дирижабль «Италия», 1928 год",
@@ -471,7 +478,7 @@ section{display:flex; flex-direction:column}
    "plot": "Экспедиция геологов ищет алмазы",
    "title": "«Неотправленное письмо»",
    "meta": "Фильм, 1959",
-   "note": "С 1959 года производственной теме посвящены 8 из 23 советских фильмов об Арктике.",
+   "note": "В советском кино воспевалась героика труда. 8 из 23 фильмов об Арктике, вышедших с 1959 по 1991 год, посвящены производственной теме.",
    "photo": {
     "src": "photos/06_mir_mine.jpg",
     "caption": "Алмазный карьер «Мир», Якутия",
@@ -488,7 +495,7 @@ section{display:flex; flex-direction:column}
    "plot": "Драма, снятая в Териберке",
    "title": "«Левиафан»",
    "meta": "Фильм, 2014",
-   "note": "Мурманская область стала главным местом действия современного кино: 8 проектов. В советском лидировала Чукотка.",
+   "note": "События современного кино об Арктике чаще всего происходят в Мурманской области: там происходит действие 8 российских проектов. А в советском кино главным местом действия была Чукотка.",
    "photo": {
     "src": "photos/07_teriberka.jpg",
     "caption": "Териберка, Мурманская область",
@@ -505,7 +512,7 @@ section{display:flex; flex-direction:column}
    "plot": "Геологи ищут золото на Чукотке",
    "title": "«Территория»",
    "meta": "Фильмы, 1978 и 2014",
-   "note": "Роман Олега Куваева экранизировали дважды.",
+   "note": "Роман Олега Куваева экранизировали дважды: при Союзе и в наши дни.",
    "photo": {
     "src": "photos/08_pevek.jpg",
     "caption": "Певек, Чукотка",
@@ -518,7 +525,7 @@ section{display:flex; flex-direction:column}
   {
    "part": "out",
    "type": "ticket",
-   "answer": "more",
+   "answer": "b",
    "a": {
     "label": "«Два капитана»",
     "value": "32",
@@ -539,20 +546,21 @@ section{display:flex; flex-direction:column}
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.ru",
     "page": "https://commons.wikimedia.org/wiki/File:Bennett-Insel_4_2014-08-25.jpg"
-   }
+   },
+   "q": "Какой фильм собрал больше зрителей?"
   },
   {
    "part": "out",
    "type": "ticket",
-   "answer": "less",
+   "answer": "a",
    "a": {
-    "label": "Якутские фильмы в кинотеатрах Якутии",
+    "label": "Якутские фильмы",
     "value": "222",
     "unit": "млн рублей",
     "tag": "2025"
    },
    "b": {
-    "label": "Все остальные фильмы в кинотеатрах Якутии",
+    "label": "Все остальные фильмы",
     "value": "212",
     "unit": "млн рублей",
     "tag": "2025"
@@ -565,20 +573,21 @@ section{display:flex; flex-direction:column}
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.ru",
     "page": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%B8%D0%BD%D0%BE%D1%82%D0%B5%D0%B0%D1%82%D1%80_%C2%AB%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%C2%BB_%28%D0%AF%D0%BA%D1%83%D1%82%D1%81%D0%BA%29_14.09.2025.jpg"
-   }
+   },
+   "q": "Что собрало больше в кинотеатрах Якутии в 2025 году?"
   },
   {
    "part": "out",
    "type": "ticket",
-   "answer": "less",
+   "answer": "a",
    "a": {
     "label": "Съемки обычного якутского фильма",
-    "value": "пара",
-    "unit": "миллионов рублей",
+    "value": "~2",
+    "unit": "млн рублей",
     "tag": "Якутия"
    },
    "b": {
-    "label": "«Пугало», главный приз «Кинотавра»",
+    "label": "Главный приз «Кинотавра», который получило «Пугало»",
     "value": "1,5",
     "unit": "млн рублей",
     "tag": "2020"
@@ -591,17 +600,18 @@ section{display:flex; flex-direction:column}
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.ru",
     "page": "https://commons.wikimedia.org/wiki/File:%D0%90%D1%8D%D1%80%D0%BE%D1%84%D0%BE%D1%82%D0%BE%D1%81%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D0%97%D0%B8%D0%BC%D0%BD%D0%B5%D0%B3%D0%BE_%D1%82%D0%B5%D0%B0%D1%82%D1%80%D0%B0_04_%28cropped%29.jpg"
-   }
+   },
+   "q": "Какая сумма больше?"
   },
   {
    "part": "out",
    "type": "ticket",
-   "answer": "more",
+   "answer": "b",
    "a": {
-    "label": "Мурманская область возвращает кинокомпаниям расходы на съемки",
+    "label": "Мурманская область",
     "value": "до 30%",
     "unit": "",
-    "tag": "Кольский"
+    "tag": "Мурман"
    },
    "b": {
     "label": "ЯНАО",
@@ -617,12 +627,13 @@ section{display:flex; flex-direction:column}
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.ru",
     "page": "https://commons.wikimedia.org/wiki/File:Labitnangi3.jpg"
-   }
+   },
+   "q": "Где кинокомпаниям возвращают большую долю расходов на съемки?"
   },
   {
    "part": "out",
    "type": "ticket",
-   "answer": "more",
+   "answer": "b",
    "a": {
     "label": "ЯНАО",
     "value": "до 50%",
@@ -630,7 +641,7 @@ section{display:flex; flex-direction:column}
     "tag": "Ямал"
    },
    "b": {
-    "label": "Печенгский округ Мурманской области с сентября 2026 года",
+    "label": "Печенгский округ Мурманской области (с сентября 2026 года)",
     "value": "до 60%",
     "unit": "",
     "tag": "Печенга"
@@ -643,7 +654,8 @@ section{display:flex; flex-direction:column}
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/deed.ru",
     "page": "https://commons.wikimedia.org/wiki/File:Liinahamari_harbour.jpg"
-   }
+   },
+   "q": "Где компенсации расходов на съемки больше?"
   }
  ],
  "tiers": [
@@ -675,14 +687,12 @@ section{display:flex; flex-direction:column}
   "unit": "млн",
   "frameCount": "{n} из {total}",
   "ticketCount": "{n} из {total}",
-  "more": "Больше",
-  "less": "Меньше",
   "mystery": "?",
   "ok": "Верно",
   "bad": "Мимо",
   "badEra": "Мимо: это {era}",
-  "okTicket": "Верно: {answer}",
-  "badTicket": "Мимо: на самом деле {answer}",
+  "okTicket": "Верно",
+  "badTicket": "Мимо",
   "both": "Оба ответа верны",
   "next": "Дальше",
   "finish": "К результату",
@@ -699,9 +709,8 @@ section{display:flex; flex-direction:column}
   "sourceBefore": "По статье ",
   "sourceAfter": " на GoArctic. Игра канала ",
   "liveFrame": "{n} из {total}. {plot}",
-  "liveTicket": "{n} из {total}. {a}: {av} {au}. {b}: больше или меньше?",
-  "photoBy": "Фото: ",
-  "photoNote": "Фото с Wikimedia Commons, кадрированы и уменьшены."
+  "liveTicket": "{n} из {total}. {q} {a} или {b}?",
+  "photoBy": "Фото: "
  }
 }</script>
 
@@ -995,25 +1004,24 @@ function decideEra(choice, fromDrag){
   }, (fromDrag || REDUCED) ? 120 : 260);
 }
 
-/* ----- part 2: ticket pairs ----- */
-function ticketEl(t, mystery){
-  var value = h('div', { class: 'value' }, h('b', { text: mystery ? U.mystery : t.value }), (mystery || !t.unit) ? null : h('span', { text: t.unit }));
-  return h('div', { class: 'ticket' + (mystery ? ' mystery' : '') },
-    h('div', { class: 'main' }, h('p', { class: 'label', text: t.label }), value),
-    h('div', { class: 'stub', 'aria-hidden': 'true' }, h('span', { text: t.tag || '' })));
+/* ----- part 2: pick the ticket with the bigger figure; the pair is shuffled every time ----- */
+function ticketBtn(t, key){
+  var btn = h('button', { class: 'ticket mystery', type: 'button', 'data-key': key },
+    h('span', { class: 'main' }, h('span', { class: 'label', text: t.label }), h('span', { class: 'value' }, h('b', { text: U.mystery }))),
+    h('span', { class: 'stub', 'aria-hidden': 'true' }, h('span', { text: t.tag || '' })));
+  btn.addEventListener('click', function(){ decideTicket(key); });
+  return btn;
 }
 function renderTicket(sc, n, total){
-  var box = h('div', { class: 'tickets' }, ticketEl(sc.a, false), ticketEl(sc.b, true));
+  var keys = Math.random() < 0.5 ? ['a', 'b'] : ['b', 'a'];
   var shot = photoEl(sc.photo, true);
   if (shot) stage.append(shot);
+  stage.append(h('p', { class: 'question', id: 'question', text: sc.q }));
+  var box = h('div', { class: 'tickets', role: 'group', 'aria-labelledby': 'question' });
+  keys.forEach(function(k){ box.append(ticketBtn(sc[k], k)); });
   stage.append(box);
-  var bM = h('button', { class: 'choice', type: 'button', id: 'choiceM' }, h('b', { text: U.more }));
-  var bL = h('button', { class: 'choice', type: 'button', id: 'choiceLess' }, h('b', { text: U.less }));
-  bM.addEventListener('click', function(){ decideTicket('more'); });
-  bL.addEventListener('click', function(){ decideTicket('less'); });
-  controls.append(bM, bL);
   $('#hint').textContent = '';
-  live(fill(U.liveTicket, { n: n, total: total, a: sc.a.label, av: sc.a.value, au: sc.a.unit, b: sc.b.label }));
+  live(fill(U.liveTicket, { n: n, total: total, q: sc.q, a: sc[keys[0]].label, b: sc[keys[1]].label }));
 }
 function countUp(el, value){
   var m = /^(.*?)(\d+(?:,\d+)?)(.*)$/.exec(value);
@@ -1025,25 +1033,34 @@ function countUp(el, value){
     if (k < 1) requestAnimationFrame(step);
   })(t0);
 }
-function decideTicket(choice){
+function decideTicket(key){
   if (answered || busy) return;
   answered = true; busy = true;
-  var sc = S[idx], ok = sc.answer === choice;
+  var sc = S[idx], ok = sc.answer === key;
   results.push(ok);
-  $('#choiceM').disabled = true; $('#choiceLess').disabled = true;
-  var tB = stage.querySelectorAll('.ticket')[1];
-  tB.classList.remove('mystery'); tB.classList.add(ok ? 'ok' : 'bad');
-  var val = tB.querySelector('.value'); val.textContent = '';
-  var b = h('b'); val.append(b);
-  if (sc.b.unit) val.append(h('span', { text: sc.b.unit }));
-  countUp(b, sc.b.value);
-  var answer = (sc.answer === 'more' ? U.more : U.less).toLowerCase();
-  var vText = fill(ok ? U.okTicket : U.badTicket, { answer: answer });
+  stage.querySelectorAll('.ticket').forEach(function(tk){
+    var k = tk.getAttribute('data-key'), t = sc[k];
+    tk.disabled = true;
+    tk.classList.remove('mystery');
+    tk.classList.add(k === sc.answer ? 'ok' : (k === key ? 'bad' : 'dim'));
+    var val = tk.querySelector('.value'); val.textContent = '';
+    var b = h('b'); val.append(b);
+    if (t.unit) val.append(h('span', { text: t.unit }));
+    countUp(b, t.value);
+  });
+  var vText = ok ? U.okTicket : U.badTicket;
   var verdict = h('p', { class: 'verdict ' + (ok ? 'ok' : 'bad') });
   verdict.innerHTML = ok ? ICON.ok : ICON.bad;
   verdict.append(typo(vText));
   stage.append(h('div', { class: 'panel enter' }, verdict, h('p', { class: 'note', text: sc.note })));
-  after(ok, vText + '. ' + sc.b.label + ': ' + sc.b.value + ' ' + sc.b.unit + '. ' + sc.note);
+  function said(t){ return t.label + ': ' + t.value + (t.unit ? ' ' + t.unit : ''); }
+  after(ok, vText + '. ' + said(sc.a) + '. ' + said(sc.b) + '. ' + sc.note);
+  // on short screens the note and the next button land below the fold: bring them up once the figures have counted
+  var nb = $('#nextBtn');
+  setTimeout(function(){
+    if (nb && nb.isConnected && nb.getBoundingClientRect().bottom > window.innerHeight)
+      try { nb.scrollIntoView({ block: 'end', behavior: REDUCED ? 'auto' : 'smooth' }); } catch (_) {}
+  }, REDUCED ? 0 : 700);
 }
 
 function after(ok, liveText){
@@ -1087,8 +1104,10 @@ document.addEventListener('keydown', function(e){
     if (e.key === 'ArrowLeft'){ e.preventDefault(); decideEra('ussr', false); }
     else if (e.key === 'ArrowRight'){ e.preventDefault(); decideEra('now', false); }
   } else {
-    if (e.key === 'ArrowUp'){ e.preventDefault(); decideTicket('more'); }
-    else if (e.key === 'ArrowDown'){ e.preventDefault(); decideTicket('less'); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
+      var tks = stage.querySelectorAll('.ticket');
+      if (tks.length === 2){ e.preventDefault(); decideTicket(tks[e.key === 'ArrowUp' ? 0 : 1].getAttribute('data-key')); }
+    }
   }
 });
 
